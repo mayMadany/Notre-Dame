@@ -8,29 +8,50 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let courseArray = ["LOG121", "LOG240", "ING150", "COM115"]
+    @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    let semestres = ["Automne 2018", "Ete 2018", "Printemps 2018", "Hiver 2017"]
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return courseArray.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "courseCell", for: indexPath) as? CourseCollectionViewCell else {
-                                                        // you can have your custom error
-                                                        return UICollectionViewCell()
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 200.0;//Choose your custom row height
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return semestres.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "schoolTerm", for: indexPath) as? SchoolTermSection {
+            return cell
         }
-        cell.displayContent(title: courseArray[indexPath.row])
-        return cell
+        return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return semestres[section]
+    }
+    
+    
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        tableView.estimatedRowHeight = 120
+        tableView.tableFooterView = UIView()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         // Do any additional setup after loading the view.
     }
 
