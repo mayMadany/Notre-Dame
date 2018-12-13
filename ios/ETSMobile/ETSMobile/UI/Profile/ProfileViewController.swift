@@ -8,7 +8,25 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    let courseArray = ["LOG121", "LOG240", "ING150", "COM115"]
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return courseArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "courseCell", for: indexPath) as? CourseCollectionViewCell else {
+                                                        // you can have your custom error
+                                                        return UICollectionViewCell()
+        }
+        cell.displayContent(title: courseArray[indexPath.row])
+        return cell
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
