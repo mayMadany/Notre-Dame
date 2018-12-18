@@ -37,6 +37,7 @@
 		8F9F71152182265A0052D16C /* ETSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F71142182265A0052D16C /* ETSButton.swift */; };
 		95097715218286710007AD32 /* ETSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95097714218286710007AD32 /* ETSLabel.swift */; };
 		95186718218E0650009DDD47 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95186717218E0650009DDD47 /* GradientView.swift */; };
+		9579759521C96DBE0059E65C /* ETSTableHeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9579759421C96DBE0059E65C /* ETSTableHeaderFooter.swift */; };
 		958AD36E210E069200A5D5B0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958AD36D210E069200A5D5B0 /* LoginViewController.swift */; };
 		958F2F022106ADF70074DBF5 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958F2F012106ADF70074DBF5 /* UserInfo.swift */; };
 		959F23A421C220BB0005D326 /* SchoolTermSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959F23A321C220BB0005D326 /* SchoolTermSection.swift */; };
@@ -117,6 +118,7 @@
 		8F9F71142182265A0052D16C /* ETSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETSButton.swift; sourceTree = "<group>"; };
 		95097714218286710007AD32 /* ETSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETSLabel.swift; sourceTree = "<group>"; };
 		95186717218E0650009DDD47 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		9579759421C96DBE0059E65C /* ETSTableHeaderFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETSTableHeaderFooter.swift; sourceTree = "<group>"; };
 		958AD36D210E069200A5D5B0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		958F2F012106ADF70074DBF5 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		959F23A321C220BB0005D326 /* SchoolTermSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolTermSection.swift; sourceTree = "<group>"; };
@@ -305,11 +307,13 @@
 		8F83BEE42180E4E1006294B0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				146F3B00208B850F00275F71 /* Profile */,
 				8F83BEE52180E501006294B0 /* ETSTextField.swift */,
 				8F9F71142182265A0052D16C /* ETSButton.swift */,
 				8F4CAF2821825178009ADDEF /* ETSLoadingIndicator.swift */,
 				95097714218286710007AD32 /* ETSLabel.swift */,
 				95186717218E0650009DDD47 /* GradientView.swift */,
+				9579759421C96DBE0059E65C /* ETSTableHeaderFooter.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -340,7 +344,6 @@
 				25553FAA20545D42009897F7 /* Main.storyboard */,
 				958F2F002106ADB30074DBF5 /* Login */,
 				146F3AFF208B84FE00275F71 /* Home */,
-				146F3B00208B850F00275F71 /* Profile */,
 				146F3B01208B853100275F71 /* Schedule */,
 				C8C49A872162D5F6006CCBED /* School */,
 				146F3B02208B867500275F71 /* Drawer */,
@@ -626,6 +629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9579759521C96DBE0059E65C /* ETSTableHeaderFooter.swift in Sources */,
 				14487BEF20C4808000769881 /* SuspiciousPackageViewController.swift in Sources */,
 				846B169E20C710FB00AE5D1F /* ArmedPersonViewController.swift in Sources */,
 				959F23A421C220BB0005D326 /* SchoolTermSection.swift in Sources */,
