@@ -10,9 +10,11 @@ import UIKit
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var sectionTitle: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     
-    let semestres = ["Automne 2018", "Ete 2018", "Printemps 2018", "Hiver 2017"]
+    
+    let semestres = ["Automne 2018", "Été 2018", "Printemps 2018", "Hiver 2017"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -32,10 +34,21 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return semestres[section]
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ETSTableHeaderFooter.reuseIdentifer) as? ETSTableHeaderFooter else {
+            return nil
+        }
+        header.customLabel.text = semestres[section]
+        
+        return header
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let header = view as? UITableViewHeaderFooterView {
+            header.backgroundView?.backgroundColor = UIColor.init(red: 220.00/255.00, green: 76.00/255.00, blue: 76.00/255.00, alpha: 1)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,9 +58,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(ETSTableHeaderFooter.self, forHeaderFooterViewReuseIdentifier: ETSTableHeaderFooter.reuseIdentifer)
+        tableView.sectionHeaderHeight = 50
+        sectionTitle.title = "Profil"
         
         // Do any additional setup after loading the view.
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
