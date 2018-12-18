@@ -45,7 +45,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let header = view as? UITableViewHeaderFooterView {
-            header.backgroundView?.backgroundColor = UIColor.init(red: 220.00/255.00, green: 76.00/255.00, blue: 76.00/255.00, alpha: 1)
+            header.backgroundView?.backgroundColor = UIColor.init(red: 220.00/255.00, green: 76.00/255.00, blue: 64.00/255.00, alpha: 1)
         }
     }
 
