@@ -18,8 +18,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return 1
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200.0;//Choose your custom row height
     }
     
@@ -37,16 +36,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return semestres[section]
     }
     
-    
-    
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        tableView.estimatedRowHeight = 120
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 80
         tableView.tableFooterView = UIView()
         
         tableView.delegate = self
