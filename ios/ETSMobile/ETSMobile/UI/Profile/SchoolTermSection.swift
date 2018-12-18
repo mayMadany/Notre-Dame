@@ -34,7 +34,7 @@ class SchoolTermSection: UITableViewCell, UICollectionViewDataSource, UICollecti
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "courseCell", for: indexPath) as? CourseCell {
-            cell.displayContent(title: courseArray[indexPath.row])
+            cell.displayContent(title: courseArray[indexPath.row], grade: String(Int.random(in: 0...100)) + "%")
             print(courseArray[indexPath.row])
             return cell
         }
