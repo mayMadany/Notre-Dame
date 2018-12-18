@@ -307,7 +307,6 @@
 		8F83BEE42180E4E1006294B0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				146F3B00208B850F00275F71 /* Profile */,
 				8F83BEE52180E501006294B0 /* ETSTextField.swift */,
 				8F9F71142182265A0052D16C /* ETSButton.swift */,
 				8F4CAF2821825178009ADDEF /* ETSLoadingIndicator.swift */,
@@ -340,6 +339,7 @@
 		C8B61D052162DA920040A732 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				146F3B00208B850F00275F71 /* Profile */,
 				8F83BEE42180E4E1006294B0 /* Common */,
 				25553FAA20545D42009897F7 /* Main.storyboard */,
 				958F2F002106ADB30074DBF5 /* Login */,
