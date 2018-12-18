@@ -23,9 +23,11 @@ class CourseCell: UICollectionViewCell {
     func style() {
         self.backgroundColor = UIColor.clear
         self.layer.borderColor = UIColor.red.withAlphaComponent(0.7).cgColor
-        self.layer.borderWidth = 1.0
+        self.layer.borderWidth = 3.0
         self.layer.cornerRadius = 8.0
         self.tintColor = UIColor.white
+        self.courseTitle.backgroundColor = UIColor.red
+        self.courseTitle.textColor = UIColor.white
     }
     
     func displayContent(title: String, grade: String) {
