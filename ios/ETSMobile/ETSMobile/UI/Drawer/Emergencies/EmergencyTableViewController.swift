@@ -36,6 +36,8 @@ class EmergencyTableViewController: UITableViewController {
     @IBAction func emergencyCallButtonAction(_ sender: Any) {
         UIApplication.shared.open(Environment.current.emergencyNumber())
     }
+    
+    let titles = [NSLocalizedString("reachSecurity", comment: "Reach security"),NSLocalizedString("emergencyProcedures", comment: "Emergency procedures")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,6 +109,7 @@ class EmergencyTableViewController: UITableViewController {
             )
         )
         self.tableView?.rowHeight = 40.0
+        self.tableView.sectionHeaderHeight = 50
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -121,15 +124,20 @@ class EmergencyTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    // Associate the language mapped labels to the section headers of the table view
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return NSLocalizedString("reachSecurity", comment: "Reach security")
-        case 1:
-            return NSLocalizedString("emergencyProcedures", comment: "Emergency procedures")
-        default:
-            return ""
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ETSTableHeaderFooter.reuseIdentifer) as? ETSTableHeaderFooter else {
+            return nil
+        }
+        header.customLabel.text = titles[section]
+        
+        return header
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let header = view as? UITableViewHeaderFooterView {
+            header.backgroundView?.backgroundColor = UIColor.init(red: 0.25, green: 0.25, blue: 0.25, alpha: 1)
+            header.textLabel?.textColor = UIColor.white
         }
     }
 

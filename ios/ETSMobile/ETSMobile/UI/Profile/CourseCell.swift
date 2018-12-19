@@ -21,7 +21,6 @@ class CourseCell: UICollectionViewCell {
     }
     
     func style() {
-        self.backgroundColor = UIColor.clear
         self.layer.borderColor = UIColor.init(red: 226.00/255.00, green: 76.00/255.00, blue: 71.00/255.00, alpha: 1).cgColor
         self.layer.borderWidth = 3.0
         self.layer.cornerRadius = 8.0
