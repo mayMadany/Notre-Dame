@@ -60,6 +60,7 @@
                                                                     </label>
                                                                 </subviews>
                                                             </view>
+                                                            <color key="backgroundColor" white="0.97289704623287676" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstItem="cKV-VK-BuV" firstAttribute="centerX" secondItem="DPV-Gu-VSt" secondAttribute="centerX" id="RDK-AZ-jo7"/>
                                                                 <constraint firstItem="cKV-VK-BuV" firstAttribute="top" secondItem="DPV-Gu-VSt" secondAttribute="topMargin" constant="8" id="aIW-WL-jU1"/>
@@ -113,17 +114,17 @@
             </objects>
             <point key="canvasLocation" x="1712.8" y="-482.60869565217394"/>
         </scene>
-        <!--Second-->
+        <!--Profil-->
         <scene sceneID="lek-BS-81S">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Kd-Dn-hjM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Profil" image="profileIcon" selectedImage="profileIcon" id="cPa-gy-q4n" userLabel="Profil"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="H3n-by-xC3">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" red="0.86274509803921573" green="0.29803921568627451" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.84799999999999998" green="0.23543438320000001" blue="0.21199999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                             <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -140,7 +141,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="second" width="30" height="30"/>
+        <image name="profileIcon" width="36" height="36"/>
     </resources>
     <color key="tintColor" red="0.95686274509803915" green="0.22745098039215686" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
