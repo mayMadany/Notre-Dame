@@ -13,7 +13,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var sectionTitle: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     
-    
     let semestres = ["Automne 2018", "Été 2018", "Printemps 2018", "Hiver 2017"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,6 +28,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "schoolTerm", for: indexPath) as? SchoolTermSection {
+            cell.delegate = self
             return cell
         }
         return UITableViewCell()
@@ -61,12 +61,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.register(ETSTableHeaderFooter.self, forHeaderFooterViewReuseIdentifier: ETSTableHeaderFooter.reuseIdentifer)
         tableView.sectionHeaderHeight = 50
         sectionTitle.title = "Profil"
-
         
         // Do any additional setup after loading the view.
     }
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

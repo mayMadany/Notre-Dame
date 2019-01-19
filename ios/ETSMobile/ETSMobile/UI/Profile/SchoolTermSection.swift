@@ -11,6 +11,7 @@ import UIKit
 class SchoolTermSection: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
     
     let courseArray = ["LOG121", "LOG240", "COM115", "ING150","ING150","ING150"]
+    weak var delegate : ProfileViewController?
     
     @IBOutlet weak var collectionView: UICollectionView!
     override func awakeFromNib() {
@@ -45,6 +46,7 @@ class SchoolTermSection: UITableViewCell, UICollectionViewDataSource, UICollecti
         return size
     }
     
-
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.delegate?.performSegue(withIdentifier: "goToCourse", sender: self)
+    }
 }
