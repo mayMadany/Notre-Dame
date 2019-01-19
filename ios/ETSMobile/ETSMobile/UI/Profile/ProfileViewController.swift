@@ -15,6 +15,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     let semestres = ["Automne 2018", "Été 2018", "Printemps 2018", "Hiver 2017"]
     
+    var currentCourse: String?
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -61,6 +63,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.register(ETSTableHeaderFooter.self, forHeaderFooterViewReuseIdentifier: ETSTableHeaderFooter.reuseIdentifer)
         tableView.sectionHeaderHeight = 50
         sectionTitle.title = "Profil"
+
         
         // Do any additional setup after loading the view.
     }
@@ -70,6 +73,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
 
+    
+    public func goToCourse(course:String){
+        currentCourse=course
+        self.performSegue(withIdentifier: "goToCourse", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToCourse" {
+            if let controller = segue.destination as? CourseViewController {
+                 controller.title = self.currentCourse!
+            }
+           
+        }
+    }
+    
+    
     /*
     // MARK: - Navigation
 

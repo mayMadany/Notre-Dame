@@ -118,8 +118,8 @@
         <!--CourseViewController-->
         <scene sceneID="9lq-ks-q3h">
             <objects>
-                <viewController id="3da-Y9-AeJ" userLabel="CourseViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nbD-xD-PdV">
+                <viewController id="3da-Y9-AeJ" userLabel="CourseViewController" customClass="CourseViewController" customModule="ETSMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nbD-xD-PdV" customClass="Courseview">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

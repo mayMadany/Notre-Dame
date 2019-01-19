@@ -47,6 +47,6 @@ class SchoolTermSection: UITableViewCell, UICollectionViewDataSource, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.delegate?.performSegue(withIdentifier: "goToCourse", sender: self)
+        self.delegate?.goToCourse(course: courseArray[indexPath.row])
     }
 }

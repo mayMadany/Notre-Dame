@@ -42,6 +42,7 @@
 		958F2F022106ADF70074DBF5 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958F2F012106ADF70074DBF5 /* UserInfo.swift */; };
 		959F23A421C220BB0005D326 /* SchoolTermSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959F23A321C220BB0005D326 /* SchoolTermSection.swift */; };
 		959F23A621C222360005D326 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959F23A521C222360005D326 /* CourseCell.swift */; };
+		95F0699C21F38D990095CA9D /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F0699B21F38D990095CA9D /* CourseViewController.swift */; };
 		B6D2C0C1F41F5A744715A147 /* Pods_ETSMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C47FBC9D32E951F0CF7689 /* Pods_ETSMobile.framework */; };
 		C8B61D042162D9100040A732 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B61D032162D9100040A732 /* UserType.swift */; };
 		C8B61D082162DB1D0040A732 /* MonETSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B61D072162DB1D0040A732 /* MonETSClient.swift */; };
@@ -123,6 +124,7 @@
 		958F2F012106ADF70074DBF5 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		959F23A321C220BB0005D326 /* SchoolTermSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolTermSection.swift; sourceTree = "<group>"; };
 		959F23A521C222360005D326 /* CourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
+		95F0699B21F38D990095CA9D /* CourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
 		BDF2469E7134D6E5966A13B9 /* Pods-ETSMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ETSMobileTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ETSMobileTests/Pods-ETSMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C8B61D032162D9100040A732 /* UserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
 		C8B61D072162DB1D0040A732 /* MonETSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonETSClient.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				146F3B05208B87AD00275F71 /* ProfileViewController.swift */,
 				959F23A321C220BB0005D326 /* SchoolTermSection.swift */,
 				959F23A521C222360005D326 /* CourseCell.swift */,
+				95F0699B21F38D990095CA9D /* CourseViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 				846B169E20C710FB00AE5D1F /* ArmedPersonViewController.swift in Sources */,
 				959F23A421C220BB0005D326 /* SchoolTermSection.swift in Sources */,
 				146F3B0C208B883400275F71 /* EmergencyTableViewController.swift in Sources */,
+				95F0699C21F38D990095CA9D /* CourseViewController.swift in Sources */,
 				25553FA520545D42009897F7 /* AppDelegate.swift in Sources */,
 				146F3B06208B87AD00275F71 /* ProfileViewController.swift in Sources */,
 				14E8E3BE20C8CC9B00751350 /* SuspiciousSmellViewController.swift in Sources */,
