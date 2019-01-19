@@ -8,6 +8,7 @@ import ca.etsmtl.applets.repository.data.model.Resource
 import ca.etsmtl.applets.repository.data.model.Session
 import ca.etsmtl.applets.repository.data.model.SignetsUserCredentials
 import ca.etsmtl.applets.repository.data.repository.signets.SessionRepository
+import ca.etsmtl.applets.repository.util.timeInSeconds
 import java.util.Date
 import javax.inject.Inject
 
@@ -16,13 +17,14 @@ import javax.inject.Inject
  */
 
 class FetchCurrentSessionUseCase @Inject constructor(
+    private val userCredentials: SignetsUserCredentials,
     private val sessionRepository: SessionRepository,
     private val app: App
 ) {
-    operator fun invoke(userCredentials: SignetsUserCredentials): LiveData<Resource<Session>> {
+    operator fun invoke(): LiveData<Resource<Session>> {
         return Transformations.map(sessionRepository.getSessions(userCredentials) { true }) {
             val currentSession = it.data.orEmpty().find {
-                Date().time in it.dateDebut..it.dateFin
+                Date().timeInSeconds in it.dateDebut..it.dateFin
             }
 
             if (it.status == Resource.Status.LOADING) {

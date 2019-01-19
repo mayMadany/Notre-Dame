@@ -30,7 +30,7 @@ class App : DaggerApplication() {
     }
 
     private fun setupBuglife() {
-        Buglife.initWithApiKey(this, "TODO") // TODO: Insert Buglife key here
+        Buglife.initWithApiKey(this, getString(R.string.buglife_key))
         Buglife.setInvocationMethod(InvocationMethod.BUG_BUTTON)
         Buglife.setInvocationMethod(InvocationMethod.SHAKE)
 
@@ -50,7 +50,7 @@ class App : DaggerApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         return DaggerAppComponent.builder()
                 .application(this)
-                .repositoryModule(RepositoryModule.instance)
+                .repositoryModule(RepositoryModule(this))
                 .build()
     }
 }
