@@ -39,8 +39,9 @@ buildscript {
         google()
         jcenter()
     }
+
     dependencies {
-        classpath "com.android.tools.build:gradle:$versions.gradle"
+        classpath Deps.GradlePlugin.android
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$versions.kotlin"
         classpath "com.squareup.sqldelight:gradle-plugin:$versions.sqldelight"
