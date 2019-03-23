@@ -364,7 +364,6 @@
 			isa = PBXGroup;
 			children = (
 				146F3B00208B850F00275F71 /* Profile */,
-				8F83BEE42180E4E1006294B0 /* Common */,
 				25553FAA20545D42009897F7 /* Main.storyboard */,
 				8F83BEE42180E4E1006294B0 /* Common */,
 				958F2F002106ADB30074DBF5 /* Login */,
@@ -885,7 +884,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N742HF354K;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -907,7 +906,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N742HF354K;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
