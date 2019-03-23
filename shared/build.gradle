@@ -1,0 +1,97 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-multiplatform'
+apply plugin: 'kotlinx-serialization'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.squareup.sqldelight'
+apply from: rootProject.file('gradle/android.gradle')
+
+sqldelight {
+    packageName = "ca.etsmtl.applets.shared.db"
+    className = "EtsMobileDb"
+}
+
+androidExtensions {
+    experimental = true
+}
+
+buildscript {
+    ext.iOS_framework_name = 'ETSKit'
+}
+
+kotlin {
+    targets {
+        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") \
+                              ? presets.iosArm64 : presets.iosX64
+
+        fromPreset(iOSTarget, 'iOS') {
+            binaries {
+                framework("$iOS_framework_name")
+            }
+        }
+
+        fromPreset(presets.android, 'android')
+    }
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                api 'org.jetbrains.kotlin:kotlin-stdlib-common'
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$versions.kotlinx_serialization"
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$versions.coroutines"
+                api "com.soywiz:klock:$versions.klock"
+                api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines"
+                implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+                implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-alpha02"
+                implementation "javax.inject:javax.inject:1"
+            }
+        }
+
+        androidMain {
+            dependsOn commonMain
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7'
+                api "com.squareup.sqldelight:android-driver:$versions.sqldelight"
+                api "com.squareup.sqldelight:android-paging-extensions:$versions.sqldelight"
+                api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+            }
+        }
+        iOSMain {
+            dependsOn commonMain
+            dependencies {
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$versions.kotlinx_serialization"
+                api "com.squareup.sqldelight:ios-driver:$versions.sqldelight"
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$versions.coroutines"
+            }
+        }
+    }
+}
+
+// workaround for https://youtrack.jetbrains.com/issue/KT-27170
+configurations {
+    compileClasspath
+}
+
+task packForXCode {
+    final File frameworkDir = new File(buildDir, "xcode-frameworks")
+    final String buildType = project.findProperty("XCODE_CONFIGURATION")?.toUpperCase() ?: 'DEBUG'
+
+    def keyFrameworkPrefix = "$iOS_framework_name${buildType.toLowerCase().capitalize()}"
+    dependsOn "link${keyFrameworkPrefix}FrameworkIOS"
+
+    doLast {
+        def srcFile = kotlin.targets.iOS.binaries.getFramework("$iOS_framework_name", buildType).outputFile
+
+        copy {
+            from srcFile.parent
+            into frameworkDir
+        }
+
+        new File(frameworkDir, 'gradlew').with {
+            text = "#!/bin/bash\nexport 'JAVA_HOME=${System.getProperty("java.home")}'\ncd '${rootProject.rootDir}'\n./gradlew \$@\n"
+            setExecutable(true)
+        }
+    }
+}
+
+tasks.build.dependsOn packForXCode
