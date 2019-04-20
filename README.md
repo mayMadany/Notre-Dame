@@ -1,6 +1,6 @@
 # Projet Notre-Dame
 
-[![Build Status](https://travis-ci.org/ApplETS/Notre-Dame.svg?branch=master)](https://travis-ci.org/ApplETS/Notre-Dame)
+[![Build Status](https://travis-ci.com/ApplETS/Notre-Dame.svg?branch=master)](https://travis-ci.org/ApplETS/Notre-Dame)
 
 This project is the placeholder for the third version of ÉTSMobile, a mobile which application that is currently available for Android and iOS. ÉTSMobile is the main gateway between the user and the [École de technologie supérieure (ÉTS)](https://www.etsmtl.ca/) on mobile devices. ÉTSMobile is an open-source project and is developped by members of the student club [ApplETS](https://clubapplets.ca/). It offers:
 
@@ -11,6 +11,9 @@ This project is the placeholder for the third version of ÉTSMobile, a mobile wh
 _Note: This guide is available in: [Français](https://github.com/ApplETS/Notre-Dame/blob/master/README.fr.md)_
 
 ## 🤖 [Android Application](https://github.com/ApplETS/Notre-Dame/tree/master/android)
+
+<a href='https://play.google.com/store/apps/details?id=ca.etsmtl.applets.etsmobile.beta'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width=250px/></a>
+
 * Language: [Kotlin](https://github.com/ApplETS/Notre-Dame/search?l=kotlin)
 * Minimum SDK Version: 21
 * [Architecture](https://github.com/ApplETS/Notre-Dame/wiki/Architecture-(EN))

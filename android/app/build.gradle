@@ -6,6 +6,7 @@ apply plugin: "org.jlleitschuh.gradle.ktlint"
 apply plugin: 'io.fabric'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+apply plugin: 'com.github.triplet.play'
 apply from: rootProject.file('gradle/android.gradle')
 
 def keystorePropertiesFile = rootProject.file("android/keystore.properties")
@@ -20,7 +21,6 @@ println("versionBuild: " + versionBuild)
 
 android {
     defaultConfig {
-        applicationId "ca.etsmtl.applets.etsmobile"
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
     }
@@ -42,6 +42,7 @@ android {
 
     buildTypes {
         debug {
+            applicationIdSuffix ".debug"
             minifyEnabled false
             signingConfig signingConfigs.debug
             manifestPlaceholders = [enableCrashReporting: "false"]
@@ -60,16 +61,29 @@ android {
     productFlavors {
         beta {
             dimension "version"
-            applicationIdSuffix ".beta"
+            applicationId "ca.etsmtl.applets.etsmobile.beta"
             versionNameSuffix "-beta"
             resValue "string", "app_name", "ÉTSMobile bêta"
         }
         production {
             dimension "version"
+            applicationId "ca.etsmtl.applets.etsmobile"
             resValue "string", "app_name", "ÉTSMobile"
         }
     }
 
+    playConfigs {
+        // Beta flavor
+        beta {
+            serviceAccountCredentials = file("../service_account_credentials_beta.json")
+            track = "beta" // internal/alpha/beta/production
+        }
+        // Production flavor
+// TODO:
+//            production {
+//                serviceAccountCredentials = file('customer-two-key.json')
+//            }
+    }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -80,6 +94,12 @@ android {
             java.srcDirs += 'src/androidTest/kotlin'
         }
     }
+}
+
+play {
+    userFraction = 1
+    releaseStatus = "completed" // completed/draft/inProgress/halted
+    resolutionStrategy = "ignore" // ignore or auto
 }
 
 androidExtensions {
@@ -108,7 +128,7 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
     implementation "android.arch.navigation:navigation-fragment-ktx:$versions.navigation"
     implementation "android.arch.navigation:navigation-ui-ktx:$versions.navigation"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-alpha02"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle_viewmodel_ktx"
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin_version"

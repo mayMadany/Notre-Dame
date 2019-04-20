@@ -7,7 +7,7 @@
     android:layout_marginBottom="@dimen/design_bottom_navigation_height"
     tools:ignore="PrivateResource">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <ca.etsmtl.applets.etsmobile.view.SwipeRefreshLayoutWithProgressTimeLatch
         android:id="@+id/swipeRefreshLayoutSchedule"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,14 +17,11 @@
             <include
                 layout="@layout/empty_view_schedule"
                 android:visibility="gone" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewSchedule"
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/schedule_pager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="visible"
-                tools:listitem="@layout/item_schedule" />
+                android:layout_height="match_parent"/>
         </FrameLayout>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </ca.etsmtl.applets.etsmobile.view.SwipeRefreshLayoutWithProgressTimeLatch>
 </FrameLayout>
 
