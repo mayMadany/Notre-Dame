@@ -11,9 +11,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import ca.etsmtl.applets.etsmobile.R
+import ca.etsmtl.applets.etsmobile.extension.applyAppTheme
 import ca.etsmtl.applets.etsmobile.presentation.gradesdetails.GradesDetailsActivity
 import ca.etsmtl.applets.etsmobile.util.EventObserver
 import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.shopify.livedataktx.debounce
@@ -76,14 +78,17 @@ class GradesFragment : DaggerFragment() {
     }
 
     private fun setUpSwipeRefresh() {
-        swipeRefreshLayoutCoursesGrades.setColorSchemeResources(R.color.colorPrimary)
-        swipeRefreshLayoutCoursesGrades.setOnRefreshListener { gradesViewModel.refresh() }
+        with(swipeRefreshLayoutCoursesGrades) {
+            applyAppTheme(context)
+            setOnRefreshListener { gradesViewModel.refresh() }
+        }
     }
 
     private fun setUpRecyclerView() {
         recyclerViewCoursesGrades.adapter = adapter
         recyclerViewCoursesGrades.layoutManager = FlexboxLayoutManager(context, FlexDirection.ROW).apply {
             justifyContent = JustifyContent.FLEX_START
+            flexWrap = FlexWrap.WRAP
         }
         recyclerViewCoursesGrades.itemAnimator = FadeInDownAnimator()
     }

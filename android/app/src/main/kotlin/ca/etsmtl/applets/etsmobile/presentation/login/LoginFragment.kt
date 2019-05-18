@@ -14,13 +14,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import ca.etsmtl.applets.etsmobile.R
-import ca.etsmtl.applets.etsmobile.presentation.main.MainActivity
-import ca.etsmtl.applets.etsmobile.util.EventObserver
 import ca.etsmtl.applets.etsmobile.extension.fadeTo
 import ca.etsmtl.applets.etsmobile.extension.getColorCompat
 import ca.etsmtl.applets.etsmobile.extension.hideKeyboard
 import ca.etsmtl.applets.etsmobile.extension.open
 import ca.etsmtl.applets.etsmobile.extension.setVisible
+import ca.etsmtl.applets.etsmobile.presentation.main.MainActivity
+import ca.etsmtl.applets.etsmobile.util.EventObserver
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
 import dagger.android.support.DaggerFragment
@@ -55,7 +55,7 @@ class LoginFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val universalCodeInfoDialog by lazy {
         context?.let {
-            val builder = AlertDialog.Builder(it, R.style.AppCompatAlertDialogStyle)
+            val builder = AlertDialog.Builder(it, R.style.AppTheme_Dialog_Alert)
 
             val icon = it.getDrawable(R.drawable.ic_info_outline_white_24dp)?.mutate()
             icon?.setTint(it.getColorCompat(R.color.colorPrimary))
@@ -90,7 +90,7 @@ class LoginFragment : DaggerFragment() {
 
         (activity as MainActivity).bottomNavigationView.setVisible(false, 0)
 
-        Glide.with(this).load(R.drawable.ets_blanc_impr_fond_transparent).into(iVETSLogo)
+        Glide.with(this).load(R.drawable.ic_ets_logo_blanc).into(iVETSLogo)
 
         setupFields()
 
@@ -158,9 +158,7 @@ class LoginFragment : DaggerFragment() {
             })
 
             navigateToDashboard.observe(this@LoginFragment, EventObserver {
-                with((activity as MainActivity)) {
-                    findNavController().navigate(LoginFragmentDirections.actionFragmentLoginToFragmentDashboard())
-                }
+                findNavController().navigate(LoginFragmentDirections.actionFragmentLoginToFragmentDashboard())
             })
 
             hideKeyboard.observe(this@LoginFragment, Observer {
