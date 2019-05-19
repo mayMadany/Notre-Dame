@@ -18,7 +18,6 @@ import javax.inject.Inject
 
 class LoginRepository @Inject constructor(
     private val securePrefs: SecurePreferences,
-    private val prefs: SharedPreferences,
     private val appExecutors: AppExecutors,
     private val db: AppDatabase,
     private val dashboardCardQueries: DashboardCardQueries
@@ -111,7 +110,7 @@ class LoginRepository @Inject constructor(
      */
     @VisibleForTesting
     fun getSavedUniversalCode(): String? {
-        return prefs.getString(UNIVERSAL_CODE_PREF, null)
+        return securePrefs.getString(UNIVERSAL_CODE_PREF, null)
     }
 
     /**
@@ -151,7 +150,7 @@ class LoginRepository @Inject constructor(
         // Wait for operations running on diskIO thread to finish
         // Prevent crash when the user when logout while the password is being saved
         appExecutors.diskIO().execute {
-            prefs.edit().clear().apply()
+            securePrefs.clear()
 
             with(SignetsUserCredentials.INSTANCE) {
                 if (this != null) {
