@@ -73,6 +73,23 @@ kotlin {
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$versions.coroutines"
             }
         }
+
+        commonTest {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-test-common"
+                implementation "org.jetbrains.kotlin:kotlin-test-annotations-common"
+                implementation "io.mockk:mockk-common:$versions.mockk"
+            }
+        }
+
+        androidTest {
+            dependsOn commonMain
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-test"
+                implementation "org.jetbrains.kotlin:kotlin-test-junit"
+                implementation "io.mockk:mockk:$versions.mockk"
+            }
+        }
     }
 }
 

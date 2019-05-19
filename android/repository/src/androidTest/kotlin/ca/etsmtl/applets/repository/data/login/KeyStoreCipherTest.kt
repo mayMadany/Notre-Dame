@@ -14,7 +14,7 @@ abstract class KeyStoreCipherTest {
     protected lateinit var keystoreUtils: KeyStoreUtils
 
     @Before
-    open fun setUp() {
+    open fun setup() {
         keystoreUtils = KeyStoreUtils(InstrumentationRegistry.getContext())
         keystoreUtils.deleteAndroidKeyStoreKeyEntry(alias)
     }
