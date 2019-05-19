@@ -5,7 +5,6 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
-import com.ironz.binaryprefs.Preferences
 import data.securepreferences.utils.CipherUtils
 import data.securepreferences.utils.HashUtils
 import data.securepreferences.utils.KeyStoreUtils

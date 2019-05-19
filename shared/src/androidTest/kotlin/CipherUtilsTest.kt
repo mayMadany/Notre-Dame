@@ -34,15 +34,15 @@ class CipherUtilsTest : KeyStoreCipherTest() {
     private lateinit var cipherUtils: CipherUtils
 
     @Before
-    override fun setUp() {
-        super.setUp()
+    override fun setup() {
+        super.setup()
 
         keyPair = keystoreUtils.createAndroidKeyStoreAsymmetricKey(alias)
         cipherUtils = CipherUtils()
     }
 
     @Test
-    fun encrypt() {
+    fun encryptTest() {
         val publicKey = convertStringToPublicKey(PUBLIC_KEY_CONTENT)
 
         val encryptedTxt = cipherUtils.encrypt(SECRET_TXT, publicKey)

@@ -27,7 +27,6 @@ buildscript {
             "materialprogressview": "1.0.6",
             "mockito": "2.23.4",
             "mockito_kotlin": "1.6.0",
-            "mockk": "1.9.3",
             "moshi": "1.8.0",
             "navigation": "1.0.0",
             "okhttp": "3.14.0",

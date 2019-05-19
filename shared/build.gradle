@@ -5,6 +5,14 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.squareup.sqldelight'
 apply from: rootProject.file('gradle/android.gradle')
 
+android {
+    sourceSets {
+        androidTest {
+            java.srcDirs += 'src/androidTest/kotlin'
+        }
+    }
+}
+
 sqldelight {
     packageName = "ca.etsmtl.applets.shared.db"
     className = "EtsMobileDb"
@@ -61,7 +69,6 @@ kotlin {
                 implementation "io.ktor:ktor-client-json-jvm:$versions.ktor"
                 implementation "io.ktor:ktor-client-serialization-jvm:$versions.ktor"
                 implementation "androidx.core:core-ktx:$versions.android_ktx"
-                implementation "com.github.yandextaxitech:binaryprefs:1.0.1"
             }
         }
 
@@ -78,16 +85,16 @@ kotlin {
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-test-common"
                 implementation "org.jetbrains.kotlin:kotlin-test-annotations-common"
-                implementation "io.mockk:mockk-common:$versions.mockk"
             }
         }
 
         androidTest {
-            dependsOn commonMain
+            dependsOn androidMain
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-test"
                 implementation "org.jetbrains.kotlin:kotlin-test-junit"
-                implementation "io.mockk:mockk:$versions.mockk"
+                implementation "androidx.test:runner:$versions.test"
+                implementation "androidx.test:rules:$versions.test"
             }
         }
     }
