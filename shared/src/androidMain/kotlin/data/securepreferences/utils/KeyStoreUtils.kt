@@ -15,7 +15,7 @@
 * limitations under the License.
 */
 
-package ca.etsmtl.applets.repository.data.repository.signets.login
+package data.securepreferences.utils
 
 import android.content.Context
 import android.os.Build
@@ -23,6 +23,7 @@ import android.security.KeyPairGeneratorSpec
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import androidx.annotation.RequiresApi
+import di.Singleton
 import java.math.BigInteger
 import java.security.KeyPair
 import java.security.KeyPairGenerator
@@ -38,6 +39,7 @@ import javax.security.auth.x500.X500Principal
  * Created by Sonphil on 20-04-18.
  */
 
+@Singleton
 class KeyStoreUtils @Inject constructor(
     private val context: Context
 ) {
@@ -142,6 +144,11 @@ class KeyStoreUtils @Inject constructor(
 
         return builder.build()
     }
+
+    /**
+     * Returns true if the given alias exists
+     */
+    fun keyExists(alias: String) = keyStore.containsAlias(alias)
 
     /**
      * Returns the key pair (public key and private key) corresponding to the provided alias

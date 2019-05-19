@@ -45,6 +45,7 @@ kotlin {
                 implementation "javax.inject:javax.inject:1"
                 implementation "io.ktor:ktor-client-core:$versions.ktor"
                 implementation "io.ktor:ktor-client-json:$versions.ktor"
+                implementation "io.ktor:ktor-client-serialization:$versions.ktor"
             }
         }
 
@@ -58,6 +59,9 @@ kotlin {
                 api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
                 implementation "io.ktor:ktor-client-android:$versions.ktor"
                 implementation "io.ktor:ktor-client-json-jvm:$versions.ktor"
+                implementation "io.ktor:ktor-client-serialization-jvm:$versions.ktor"
+                implementation "androidx.core:core-ktx:$versions.android_ktx"
+                implementation "com.github.yandextaxitech:binaryprefs:1.0.1"
             }
         }
 
@@ -67,8 +71,6 @@ kotlin {
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$versions.kotlinx_serialization"
                 api "com.squareup.sqldelight:ios-driver:$versions.sqldelight"
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$versions.coroutines"
-                implementation "io.ktor:ktor-client-ios:$versions.ktor"
-                implementation "io.ktor:ktor-client-json-ios:$versions.ktor"
             }
         }
     }

@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import ca.etsmtl.applets.repository.AppExecutors
 import ca.etsmtl.applets.repository.data.db.AppDatabase
 import ca.etsmtl.applets.shared.db.DashboardCardQueries
+import data.securepreferences.SecurePreferences
 import model.SignetsUserCredentials
 import model.UniversalCode
 import javax.inject.Inject
@@ -16,8 +17,7 @@ import javax.inject.Inject
  */
 
 class LoginRepository @Inject constructor(
-    private val keyStoreUtils: KeyStoreUtils,
-    private val cipherUtils: CipherUtils,
+    private val securePrefs: SecurePreferences,
     private val prefs: SharedPreferences,
     private val appExecutors: AppExecutors,
     private val db: AppDatabase,
@@ -45,7 +45,7 @@ class LoginRepository @Inject constructor(
 
         appExecutors.diskIO().execute {
             saveUniversalCode(userCredentials.codeAccesUniversel.value)
-            savePassword(userCredentials.motPasse, userCredentials.codeAccesUniversel.value)
+            savePassword(userCredentials.motPasse)
 
             finishedBlnLD.postValue(true)
         }
@@ -83,7 +83,7 @@ class LoginRepository @Inject constructor(
         var userCredentials: SignetsUserCredentials? = null
 
         if (codeAccesUniversel != null) {
-            val motPasse = getSavedPassword(codeAccesUniversel)
+            val motPasse = getSavedPassword()
 
             if (motPasse != null) {
                 userCredentials = SignetsUserCredentials(UniversalCode(codeAccesUniversel), motPasse)
@@ -101,10 +101,7 @@ class LoginRepository @Inject constructor(
      */
     @VisibleForTesting
     fun saveUniversalCode(universalCode: String) {
-        with(prefs.edit()) {
-            putString(UNIVERSAL_CODE_PREF, universalCode)
-            apply()
-        }
+        securePrefs.putString(UNIVERSAL_CODE_PREF, universalCode)
     }
 
     /**
@@ -120,56 +117,21 @@ class LoginRepository @Inject constructor(
     /**
      * Gets the password from the Keystore, decrypts it and returns it
      *
-     * @param alias Key for accessing the key stored in the Keystore
      * @return The user's password
      */
     @VisibleForTesting
-    fun getSavedPassword(alias: String): String? {
-        val keyPair = keyStoreUtils.getAndroidKeyStoreAsymmetricKeyPair(alias)
-
-        val encryptedPW = prefs.getString(ENCRYPTED_PASSWORD_PREF, null)
-
-        val privateKey = keyPair?.private
-
-        return if (privateKey != null) {
-            return cipherUtils.decrypt(encryptedPW, privateKey)
-        } else {
-            null
-        }
+    fun getSavedPassword(): String? {
+        return securePrefs.getString(ENCRYPTED_PASSWORD_PREF, null)
     }
 
     /**
      * Encrypts the password and put it in the [SharedPreferences]
      *
      * @param password The password to be saved
-     * @param alias Key that would be used to for accessing the key stored in the Keystore
      */
     @VisibleForTesting
-    fun savePassword(password: String, alias: String) {
-        val keyPair = keyStoreUtils.createAndroidKeyStoreAsymmetricKey(alias)
-
-        keyPair.let {
-            val encryptedPW = cipherUtils.encrypt(password, it.public)
-
-            with(prefs.edit()) {
-                putString(ENCRYPTED_PASSWORD_PREF, encryptedPW)
-                apply()
-            }
-        }
-    }
-
-    /**
-     * Deletes the saved password
-     *
-     * @param alias Key for accessing the key stored in the Keystore
-     */
-    @VisibleForTesting
-    fun deletePassword(alias: String) {
-        keyStoreUtils.deleteAndroidKeyStoreKeyEntry(alias)
-        with(prefs.edit()) {
-            remove(ENCRYPTED_PASSWORD_PREF)
-            apply()
-        }
+    fun savePassword(password: String) {
+        securePrefs.putString(ENCRYPTED_PASSWORD_PREF, password)
     }
 
     /**
@@ -193,7 +155,7 @@ class LoginRepository @Inject constructor(
 
             with(SignetsUserCredentials.INSTANCE) {
                 if (this != null) {
-                    deletePassword(this.codeAccesUniversel.value)
+                    securePrefs.clear()
 
                     SignetsUserCredentials.INSTANCE = null
                 }
