@@ -22,6 +22,7 @@ import java.util.Arrays
  */
 @RunWith(JUnit4::class)
 class CipherUtilsTest : KeyStoreCipherTest() {
+
     companion object {
         private const val SECRET_TXT = "TextToEncrypt"
         // RSA key size: [KeyStoreUtils.RSA_KEY_SIZE] (2048 bits)
