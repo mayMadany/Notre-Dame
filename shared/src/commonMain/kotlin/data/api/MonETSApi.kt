@@ -13,9 +13,11 @@ import io.ktor.http.takeFrom
  * Created by Sonphil on 18-05-19.
  */
 
-private const val BASE_URL = "https://portail.etsmtl.ca/api/"
-
 class MonETSApi @Inject constructor(private val client: HttpClient = AppHttpClient.httpClient) {
+    companion object {
+        private const val BASE_URL = "https://portail.etsmtl.ca/api/"
+    }
+
     suspend fun authenticateUser(requestBody: MonETSAuthenticationRequestBody): MonETSUser = client.post {
         url {
             takeFrom(BASE_URL + "authentification")

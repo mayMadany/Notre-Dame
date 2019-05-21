@@ -48,12 +48,14 @@ internal class SharedPreferencesWrapper @Inject constructor(
         return prefs.getString(hashUtils.hashString(key), null)?.toInt() ?: defaultValue
     }
 
-    fun putInt(key: String, value: Int) = prefs.edit {
-        val valueStr = value.toString()
-        val keyPair = getKeyPair(key)
-        val encrypted = cipherUtils.encrypt(valueStr, keyPair.public)
+    fun putInt(key: String, value: Int) {
+        prefs.edit {
+            val valueStr = value.toString()
+            val keyPair = getKeyPair(key)
+            val encrypted = cipherUtils.encrypt(valueStr, keyPair.public)
 
-        putString(hashUtils.hashString(key), encrypted)
+            putString(hashUtils.hashString(key), encrypted)
+        }
     }
 
     fun clear() {
