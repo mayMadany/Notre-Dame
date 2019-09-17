@@ -1,5 +1,4 @@
 package ca.etsmtl.applets.etsmobile.presentation.main
-
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
@@ -23,6 +22,12 @@ import kotlinx.android.synthetic.main.activity_main.appBarLayout
 import kotlinx.android.synthetic.main.activity_main.bottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.activity_main.networkMessageContainer
+import android.net.ConnectivityManager
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 
 /**
  * A screen which displays a bottom navigation view and wrapper for fragment. The user can
@@ -33,11 +38,19 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 
+    companion
+    object {
+        var wasNotConnected = false
+    }
+
     private val mainViewModel: MainViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
     }
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+    private var broadCastReciever: BroadCastReceiver = BroadCastReceiver()
+    private var intentFilter: IntentFilter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +60,19 @@ class MainActivity : BaseActivity() {
         setupActionBar()
         setupBottomNavigation()
         subscribeUI()
+        if (intentFilter == null) {
+            intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+            registerReceiver(broadCastReciever, intentFilter)
+        }
+        if (wasNotConnected)
+            addingNetworkStatus(this.getString(R.string.error_no_internet_connection))
+        else
+            removeNetworkStatus()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(broadCastReciever)
     }
 
     private fun setupBottomNavigation() {
@@ -131,10 +157,37 @@ class MainActivity : BaseActivity() {
 
         mainViewModel.closeApp.observe(this, EventObserver {
             finishAffinity()
+            unregisterReceiver(broadCastReciever)
         })
 
         mainViewModel.navigateBack.observe(this, EventObserver {
             super.onBackPressed()
         })
+    }
+
+    private fun addingNetworkStatus(message: String) {
+        var textView = TextView(this)
+        textView.setTextColor(-0x1)
+        textView.setText(message)
+        networkMessageContainer.addView(textView)
+    }
+
+    private fun removeNetworkStatus() {
+        networkMessageContainer.removeAllViews()
+    }
+
+    private inner class BroadCastReceiver : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            if (ConnectivityManager.CONNECTIVITY_ACTION == intent.action) {
+                var isNotConnect = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false)
+                if (isNotConnect && !wasNotConnected) {
+                    wasNotConnected = true
+                    addingNetworkStatus(context.getString(R.string.error_no_internet_connection))
+                } else if (!isNotConnect && wasNotConnected) {
+                    wasNotConnected = false
+                    removeNetworkStatus()
+                }
+            }
+        }
     }
 }

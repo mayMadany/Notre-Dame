@@ -32,7 +32,11 @@
                 app:titleTextColor="@color/colorToolbarAccent"
                 tools:title="Title" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
-
+        <LinearLayout
+            android:id="@+id/networkMessageContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" />
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
